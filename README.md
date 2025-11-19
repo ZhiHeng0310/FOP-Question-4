@@ -227,6 +227,8 @@ Because all data is loaded into `DataLoad.java` at startup, "Searching" simply m
 
 ### Note: Marks allocated for each features does not reflect the actual workload. 
 
+---
+
 ## 🤝 How to Contribute
 
 **please follow these steps:**
