@@ -231,15 +231,140 @@ Because all data is loaded into `DataLoad.java` at startup, "Searching" simply m
 
 ## 🤝 How to Contribute
 
-**please follow these steps:**
-1.  **Fork** the repository.
-2.  **Clone your forked repo** to local machine
+### 🛠️ Part 1: First-Time Setup
 
-`Note: Step 1 & 2 are one-time setup, only need to be done once`
+#### **Do this only once**
 
-3.  Create a new branch (`git checkout -b feature/your name`).
-4.  Make your changes.
-5.  Stage your changes (`git add .`)
-6.  Commit your changes (`git commit -m 'Add some feature'`).
-7.  Push to the branch (`git push origin feature/your name`).
-8.  Create a new pull Request.
+
+1. **Clone your repo** Since you are a collaborator of this repo now, clone the main repo directly :
+
+```
+git clone https://github.com/zerngit/GoldenHour-System.git
+
+cd YOUR_OWN_PATH\GoldenHour-System
+```
+2. Setup Your IDE
+  - **VS Code Users** : File -> Open Folder -> open the `GoldenHour-System` folder
+
+  - **NetBeans Users**: 
+    1. After open project, right click project in the left sidebar 
+    2. Select `Properties`
+    3. go to `Run` Category
+    4. Under `Working Directory` field, change `...\GoldenHour-System\goldenhour` to `\GoldenHour-System` (remove the goldenhour)
+
+
+3. **Connect to Your branch:** I have already created branches for your specific features. Run these commands to see them and switch to yours: 
+```
+# 1. Update your list of branches
+git fetch origin
+
+# 2. Switch to your assigned branch (Run ONE of these)
+git checkout feature/salessys      # For Sales 
+git checkout feature/search        # For Search 
+git checkout feature/edit          # For Edit/Update 
+git checkout attendance            # For Attendance 
+
+```
+
+### 🔄 Part 2: Daily Workflow
+
+**Follow this loop everytime you sit down to code**
+
+1. **Sync with Main** Before you write a single line of code, get the latest update from the rest of the team. This prevents messy conflict later.
+
+```
+# 1. Go to main and get updates
+git checkout main
+git pull origin main
+
+# 2. Go back to your branch and merge those updates in
+git checkout feature/your-branch-name
+git merge main
+```
+
+2. **Working on your feature**
+
+3. **Add -> commit -> push**
+```
+git add .
+git commit -m "please specify what you have done" 
+git push --set-upstream origin feature/feature name
+```
+**Note: Never push to `main` directly!**
+
+### 🚀 Part 3: Submitting Your Feature
+When your feature is 100% complete and tested:
+
+1. Go to the `Pull Requests` tab on Github
+2. Click `New Pull Request`
+3. **Base**: `main` ⬅️ **Compare**: `feature/feature_name`.
+4. **Title**: `[Feature] XXX Complete` (or similar)
+5. **Reviewers**: Select `zerngit` on the right sidebar
+6. Click `Create Pull Request`
+
+---
+## 🚨 Migration Guide: Switching from Fork to Collaborator
+
+For those
+
+**Forked the repo initially** AND **have done your changes for your work**
+
+please read this.
+
+**Situation**: You have already written code, but your Git is connected to your own Fork. 
+
+**Goal**: Connect your Git directly to the Main Repository and submit your work there.
+
+**Step 1. Check your current setup**
+
+Open terminal and type: 
+
+```
+git remote -v
+```
+- if you see `origin ... your-username/GoldenHour-System`, follow the steps below.
+
+- if you see `origin ... zerngit/GoldenHour-System`, you are already setup, skip to `Step 3`
+
+**Step 2: Re-wire your "Origin"**
+
+We are going to disconnect your local code from your Fork and connect it to `zerngit` repo
+
+  1. **Remove the old link to your fork**
+  ```
+  git remote remove origin 
+  ```
+
+  2. **Add the new link to the Main Repo**
+
+  ```
+  git remote add origin https://github.com/zerngit/GoldenHour-System.git
+  ```
+
+  3. **Verify** : Run `git remote -v` again. It should now show `zerngit/GoldenHour-System`
+
+**Step 3: Prepare your branch**
+
+You cannot push to `main`. You must ensure your code is on the correct **Feature Branch**
+
+  1. **Redirect to your assigned branch**
+  ```
+  git branch -m feature/your_feature_name
+  ```
+
+**Step 4: Sync and Push**
+Now that you are connected to the main repo and on the right branch name:
+
+  1. **Get the latest update**
+
+  ```
+  git fetch origin
+  ```
+
+  2. **Push your code**
+
+  ```
+  git push -u origin feature/your_feature_name --force
+  ```
+
+  (Use `--force` only this one time to overwrite the empty placeholder branch)
